@@ -615,7 +615,7 @@ require('lazy').setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
-        -- ts_ls = {},
+        ts_ls = {},
 
         stylua = {}, -- Used to format Lua code
 
@@ -809,17 +809,18 @@ require('lazy').setup({
     'ellisonleao/gruvbox.nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     config = function()
-	require('gruvbox').setup {
-      	    italic = {
-        	string = false,
-        	emphasis = false,
-        	comments = false,
-        	folds = false,
-      	    },
-      	    transparent_mode = true,
-    	}
+      require('gruvbox').setup {
+        italic = {
+          strings = false,
+          emphasis = false,
+          comments = false,
+          operators = false,
+          folds = false,
+        },
+        transparent_mode = true,
+      }
 
-    	vim.cmd.colorscheme 'gruvbox'
+      vim.cmd.colorscheme 'gruvbox'
     end,
   },
 
@@ -851,6 +852,8 @@ require('lazy').setup({
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
+
+      require('mini.pairs').setup()
 
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
@@ -901,6 +904,10 @@ require('lazy').setup({
         end,
       })
     end,
+  },
+  {
+    'andymass/vim-matchup',
+    opts = {},
   },
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
